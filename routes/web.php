@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TaskController;
+use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $all_tasks = Task::all();
+    return view('welcome', compact('all_tasks'));
 });
+
+Route::post('store', [TaskController::class, 'store'])->name('store.task');
+Route::get('delete/{id}', [TaskController::class, 'destroy'])->name('delete.task');
