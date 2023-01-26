@@ -10,7 +10,6 @@ class Task extends Model {
     protected $fillable = [
         'name',
         'date',
-        'time',
         'formate',
     ];
 }

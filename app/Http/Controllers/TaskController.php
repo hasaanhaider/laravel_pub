@@ -15,14 +15,13 @@ class TaskController extends Controller {
         $validate = $request->validate([
             'name' => 'required|min:5|max:20',
             'date' => 'required',
-            'time' => 'required',
             'formate' => 'required',
         ]);
 
         $all_task = Task::all();
         foreach ($all_task as $key => $all_task) {
-            if ($all_task->time == $request->time || $all_task->date == $request->date) {
-                return back()->with('error', 'Date&Time Already Assigned to Task');
+            if ($all_task->date == $request->date) {
+                return back()->with('error', 'Date Already Assigned to Task');
             }
         }
 

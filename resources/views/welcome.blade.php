@@ -427,20 +427,15 @@
                             @enderror
                         </div>
                          <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Name</label>
+                            <label for="exampleInputEmail1" class="form-label">date</label>
                             <input type="date" value="{{old('date')}}" name="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             @error('date')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
+                        
                          <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Name</label>
-                            <input type="time" value="{{old('time')}}" name="time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            @error('time')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                         <div class="mb-3">
+                            <label for="">Time</label>
                             <select class="form-select" name="formate" aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option value="am">AM</option>
@@ -477,7 +472,7 @@
                                      <tr>
                                         <td>{{$task->name}}</td>
                                         <td>{{$task->date}}</td>
-                                        <td>{{$task->time}}</td>
+                                        <td>{{$task->formate}}</td>
                                         <td><a href="{{route('delete.task', $task->id)}}" class="btn btn-danger btn-sm">Delete</a></td>
                                      <tr>
                                 @endforeach
