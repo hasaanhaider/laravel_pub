@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $all_tasks = Task::all();
-    return view('welcome', compact('all_tasks'));
-});
-
+Route::get('/',[TaskController::class, 'index'])->name('welcome');
 Route::post('store', [TaskController::class, 'store'])->name('store.task');
 Route::get('delete/{id}', [TaskController::class, 'destroy'])->name('delete.task');

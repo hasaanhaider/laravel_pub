@@ -418,7 +418,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Name</label>
-                            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="text" value="{{old('name')}}" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             @error('name')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
