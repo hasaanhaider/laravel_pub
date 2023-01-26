@@ -413,6 +413,9 @@
                   @if (Session::get('success'))
                     <div class="alert alert-success">{{Session::get('success')}}</div>
                 @endif
+                 @if (Session::get('error'))
+                    <div class="alert alert-danger">{{Session::get('error')}}</div>
+                @endif
                 <h4>Add Task</h1>
                     <form method="post" action="{{route('store.task')}}">
                         @csrf
@@ -420,6 +423,30 @@
                             <label for="exampleInputEmail1" class="form-label">Name</label>
                             <input type="text" value="{{old('name')}}" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             @error('name')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                         <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name</label>
+                            <input type="date" value="{{old('date')}}" name="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            @error('date')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                         <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name</label>
+                            <input type="time" value="{{old('time')}}" name="time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            @error('time')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                         <div class="mb-3">
+                            <select class="form-select" name="formate" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="am">AM</option>
+                                <option value="pm">PM</option>
+                            </select>
+                            @error('formate')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
@@ -440,6 +467,8 @@
                             <thead>
                                 <tr>
                                 <th scope="col">Name</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
                                 <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -447,6 +476,8 @@
                                 @foreach ($all_tasks as $task )
                                      <tr>
                                         <td>{{$task->name}}</td>
+                                        <td>{{$task->date}}</td>
+                                        <td>{{$task->time}}</td>
                                         <td><a href="{{route('delete.task', $task->id)}}" class="btn btn-danger btn-sm">Delete</a></td>
                                      <tr>
                                 @endforeach
