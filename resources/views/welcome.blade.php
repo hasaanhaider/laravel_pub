@@ -409,7 +409,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-3 shadow p-3 mx-auto mt-5">
+            <div class="col-5 shadow p-3 mx-auto mt-5">
                   @if (Session::get('success'))
                     <div class="alert alert-success">{{Session::get('success')}}</div>
                 @endif
@@ -436,10 +436,10 @@
                         
                          <div class="mb-3">
                             <label for="">Time</label>
-                            <select class="form-select" name="formate" aria-label="Default select example">
+                            <select class="form-select" name="time" aria-label="Default select example">
                                 <option selected>Open this select menu</option>
-                                <option value="am">AM</option>
-                                <option value="pm">PM</option>
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
                             </select>
                             @error('formate')
                                 <span class="text-danger">{{$message}}</span>
@@ -453,7 +453,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-3 shadow p-3 mx-auto mt-5">
+            <div class="col-5 shadow p-3 mx-auto mt-5">
                 @if (Session::get('delete'))
                     <div class="alert alert-danger">{{Session::get('delete')}}</div>
                 @endif
@@ -470,9 +470,9 @@
                             <tbody>
                                 @foreach ($all_tasks as $task )
                                      <tr>
-                                        <td>{{$task->name}}</td>
+                                        <td>{{ucfirst($task->name)}}</td>
                                         <td>{{$task->date}}</td>
-                                        <td>{{$task->formate}}</td>
+                                        <td>{{$task->time}}</td>
                                         <td><a href="{{route('delete.task', $task->id)}}" class="btn btn-danger btn-sm">Delete</a></td>
                                      <tr>
                                 @endforeach
