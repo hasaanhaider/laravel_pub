@@ -409,9 +409,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-3 shadow p-3 mx-auto mt-5">
+            <div class="col-5 shadow p-3 mx-auto mt-5">
                   @if (Session::get('success'))
                     <div class="alert alert-success">{{Session::get('success')}}</div>
+                @endif
+                 @if (Session::get('error'))
+                    <div class="alert alert-danger">{{Session::get('error')}}</div>
                 @endif
                 <h4>Add Task</h1>
                     <form method="post" action="{{route('store.task')}}">
@@ -423,6 +426,25 @@
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
+                         <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">date</label>
+                            <input type="date" value="{{old('date')}}" name="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            @error('date')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                        
+                         <div class="mb-3">
+                            <label for="">Time</label>
+                            <select class="form-select" name="time" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                            @error('formate')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
 
                         <button type="submit" class="btn btn-danger">Add</button>
                     </form>
@@ -431,7 +453,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-3 shadow p-3 mx-auto mt-5">
+            <div class="col-5 shadow p-3 mx-auto mt-5">
                 @if (Session::get('delete'))
                     <div class="alert alert-danger">{{Session::get('delete')}}</div>
                 @endif
@@ -440,13 +462,17 @@
                             <thead>
                                 <tr>
                                 <th scope="col">Name</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
                                 <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($all_tasks as $task )
                                      <tr>
-                                        <td>{{$task->name}}</td>
+                                        <td>{{ucfirst($task->name)}}</td>
+                                        <td>{{$task->date}}</td>
+                                        <td>{{$task->time}}</td>
                                         <td><a href="{{route('delete.task', $task->id)}}" class="btn btn-danger btn-sm">Delete</a></td>
                                      <tr>
                                 @endforeach
